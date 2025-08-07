@@ -1,11 +1,11 @@
 "use strict";
 
-const BOWLING_URL =
-  "https://api.airtable.com/v0/appyPO0xrhPPEy72s/Outdoor ";
+const Pickle415 =
+  "https://api.airtable.com/v0/appyPO0xrhPPEy72s/Outdoor";
 
 // function for our list view
 async function fetchAlleys() {
-  let getResultElement = document.getElementById("alley-container");
+  let getResultElement = document.getElementById("container");
 
   const options = {
     method: "GET",
@@ -15,7 +15,7 @@ async function fetchAlleys() {
   };
 
   await fetch(
-    `${BOWLING_URL}`,
+    `${Pickle415}`,
     options
   )
     .then((response) => response.json())
@@ -28,25 +28,24 @@ async function fetchAlleys() {
       let newHtml = "";
 
       for (let i = 0; i < data.records.length; i++) {
-        let alleyPic = data.records[i].fields["image"];
-        let alleyName = data.records[i].fields["name"];
-        let alleyAddress = data.records[i].fields["address"];
-        let alleyHours = data.records[i].fields["hours"];
-        let alleyURL = data.records[i].fields["url"];
-        let alleyPhone = formatPhoneNumber(data.records[i].fields["phone"]);
-        let alleyLanes = data.records[i].fields["lanes"];
-        let alleyCost = data.records[i].fields["cost"];
+        let courtName = data.records[i].fields["Name"];
+        let courtAddress = data.records[i].fields["Address"];
+        let courtZip = data.records[i].fields["Zip"];
+        let courtMap = data.records[i].fields["Map"];
+        let courtNumberOfCourts = data.records[i].fields["Number of Courts"];
+        let courtAvailability = data.records[i].fields["Availability"];
+        let courtImage = data.records[i].fields["Images"];
 
         newHtml += `
         
           <div class="col-md-4 alley-card">
             <div class="card">
-              ${alleyPic ? `<img src="${alleyPic[0].url}" alt="Photo of ${alleyName}">` : ``}
+              ${courtImage ? `<img src="${courtImage[0].url}" alt="Photo of ${courtName}">` : ``}
               <div class="card-body">
                 <h5 class="card-title">
-                   ${alleyName}
+                   ${courtName}
                 </h5>
-                <p>${alleyAddress}</p>
+                <p>${courtAddress}</p>
                 <a class="mt-1 btn btn-primary mt-2" href="index.html?id=${
                   data.records[i].id
                 }">View Details</a>
