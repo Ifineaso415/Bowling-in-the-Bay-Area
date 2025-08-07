@@ -1,7 +1,7 @@
 "use strict";
 
 const BOWLING_URL =
-  "https://api.airtable.com/v0/appUhZDjpPFoymNNj/Bowling%20Alley%20Info";
+  "https://api.airtable.com/v0/appyPO0xrhPPEy72s/Outdoor ";
 
 // function for our list view
 async function fetchAlleys() {
@@ -10,7 +10,7 @@ async function fetchAlleys() {
   const options = {
     method: "GET",
     headers: {
-      Authorization: `Bearer patuwPLWf5SBeDkyT.45118f887bbc6a79e8bb6c9d327b8c8105866bb0d6a0cdc2290006ddec22a74d`,
+      Authorization: `Bearer patSMmsMZV3ld7iSm.adf9b201bf5b4fad908e372c585816eb2521b5e7086b7a3c9418caaa099ad817`
     },
   };
 
