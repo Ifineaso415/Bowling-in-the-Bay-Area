@@ -1,80 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="description" content="Info on bowling alleys in the Bay Area" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="https://cdn.glitch.global/43dd947c-038b-4fdf-b006-731e87149d1f/icon.png?v=1681530940118" />
-
-    <title>Bowling Alleys in the Bay Area</title>
-
-    <!-- import the webpage's stylesheet -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Indoor Pickleball Courts in SF</title>
+    <link rel="stylesheet" href="style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=IBM+Plex+Sans&display=swap"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+    <script
+      src="https://kit.fontawesome.com/a2e8e2ef5f.js"
       crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./style.css" />
+      defer
+    ></script>
   </head>
   <body>
-    <!-- this is the start of content -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="./index.html"
-          ><img
-            width="32px"
-            id="icon"
-            src="https://cdn.glitch.global/43dd947c-038b-4fdf-b006-731e87149d1f/icon.png?v=1681530940118"
-          />Bowling Alleys in the Bay Area</a
-        >
+    <header>
+      <nav class="navbar navbar-light shadow-sm mb-4">
+        <div class="container d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <span class="pickleball-ball"></span>
+            <a class="navbar-brand fw-bold ms-2" href="index.html" style="font-family: Arial, Helvetica, sans-serif; font-weight: 800; letter-spacing: 0.5px;">Pickleball in SF</a>
+          </div>
+          <div>
+            <a href="indoor.html" class="btn btn-outline-primary me-2">Indoor Courts</a>
+            <a href="outdoor.html" class="btn btn-outline-success">Outdoor Courts</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="hero-section py-5 mb-4 text-center" style="background: #eafbe7; border-radius: 24px;">
+        <div class="container">
+          <h1 class="display-4 mb-3" style="color:#27ae60; font-family: 'Montserrat', Arial, sans-serif; font-weight:700;">What is Pickleball?</h1>
+          <p class="lead mb-4" style="font-size:1.3rem; max-width:600px; margin:auto;">Pickleball is a fun, fast-paced paddle sport that combines elements of tennis, badminton, and ping-pong. It's easy to learn, great for all ages, and played on a court with a net and a perforated plastic ball.</p>
+          <a href="https://usapickleball.org/" target="_blank" class="btn btn-success btn-lg" style="background:#27ae60; border-radius:24px; font-weight:700;">Learn More at USA Pickleball</a>
+        </div>
+      </section>
+      <div class="container py-4">
+        <div class="carousel-container mb-5">
+          <h2 class="mb-4 text-center" style="font-family: 'Montserrat', Arial, sans-serif; color: #27ae60; font-weight:700;">Most Popular courts in San Francisco</h2>
+          <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="carousel-inner">
+              <!-- Dynamic items will be injected here by script.js -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center gap-3 mb-5">
+          <a href="indoor.html" class="btn btn-outline-primary btn-lg">View Indoor Courts</a>
+          <a href="outdoor.html" class="btn btn-outline-success btn-lg">View Outdoor Courts</a>
+        </div>
       </div>
-    </nav>
-
-    <div class="container">
-      <div class="row">
-        <h1>Bowling Alleys in the Bay Area</h1>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row" id="container"></div>
-    </div>
-
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
-      integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      var tooltipTriggerList = [].slice.call(
-        document.querySelectorAll('[data-bs-toggle="tooltip"]')
-      );
-      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-      });
-
-      const cards = document.querySelectorAll(".card");
-      Array.prototype.forEach.call(cards, (card) => {
-        let down,
-          up,
-          link = card.querySelector("h5 a");
-        card.onmousedown = () => (down = +new Date());
-        card.onmouseup = () => {
-          up = +new Date();
-          if (up - down < 200) {
-            link.click();
-          }
-        };
-      });
-    </script>
-    <script src="./script.js" defer></script>
+    </main>
+    <footer class="bg-light text-center py-3 mt-5 shadow-sm">
+      &copy; 2025 Pickleball in SF. All rights reserved.
+    </footer>
+    <script src="script.js"></script>
   </body>
 </html>

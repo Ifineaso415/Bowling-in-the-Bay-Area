@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outdoor Alleys</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-light shadow-sm mb-4">
+      <div class="container d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+          <span class="pickleball-ball"></span>
+          <a class="navbar-brand fw-bold ms-2" href="index.html" style="font-family: Arial, Helvetica, sans-serif; font-weight: 800; letter-spacing: 0.5px;">Pickleball in SF</a>
+        </div>
+        <div>
+          <a href="indoor.html" class="btn btn-outline-primary me-2">Indoor Courts</a>
+          <a href="outdoor.html" class="btn btn-outline-success active" aria-current="page">Outdoor Courts</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <h1>Outdoor Pickleball Courts</h1>
+  <div id="container"></div>
+  <script src="script.js"></script>
+  <script>
+    fetchOutdoorCourts();
+  </script>
+</body>
+</html>

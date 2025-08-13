@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Indoor Pickleball Courts in SF</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a2e8e2ef5f.js" crossorigin="anonymous" defer></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-light shadow-sm mb-4">
+        <div class="container d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <span class="pickleball-ball"></span>
+            <a class="navbar-brand fw-bold ms-2" href="index.html" style="font-family: Arial, Helvetica, sans-serif; font-weight: 800; letter-spacing: 0.5px;">Pickleball in SF</a>
+          </div>
+          <div>
+            <a href="indoor.html" class="btn btn-outline-primary me-2 active" aria-current="page">Indoor Courts</a>
+            <a href="outdoor.html" class="btn btn-outline-success">Outdoor Courts</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="container py-4">
+        <h2 class="mb-4">Indoor Courts</h2>
+        <div class="row" id="indoor-list"></div>
+      </div>
+    </main>
+    <footer class="bg-light text-center py-3 mt-5 shadow-sm">
+      &copy; 2025 Pickleball in SF. All rights reserved.
+    </footer>
+    <script src="script.js"></script>
+    <script>
+      // Fetch and render indoor courts from Airtable
+      async function fetchIndoorCourtsForPage() {
+        const INDOOR_URL = "https://api.airtable.com/v0/appyPO0xrhPPEy72s/Indoor";
+        const options = {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer patSMmsMZV3ld7iSm.adf9b201bf5b4fad908e372c585816eb2521b5e7086b7a3c9418caaa099ad817`
+          },
+        };
+        const indoorData = await fetch(INDOOR_URL, options).then((response) => response.json());
+        let newHtml = "";
+        for (let i = 0; i < indoorData.records.length; i++) {
+          let courtName = indoorData.records[i].fields["Name"];
+          let courtAddress = indoorData.records[i].fields["Address"];
+          let courtImage = indoorData.records[i].fields["Images"];
+          newHtml += `
+            <div class=\"col-md-4 mb-4\">
+              <div class=\"card h-100 shadow-sm\">
+                ${courtImage ? `<img src=\"${courtImage[0].url}\" class=\"card-img-top\" alt=\"Photo of ${courtName}\">` : ``}
+                <div class=\"card-body\">
+                  <h5 class=\"card-title\">${courtName}</h5>
+                  <p class=\"card-text\">${courtAddress}</p>
+                  <a class=\"btn btn-primary\" href=\"indoor.html?id=${indoorData.records[i].id}\">View Details</a>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+        document.getElementById("indoor-list").innerHTML = newHtml;
+      }
+      fetchIndoorCourtsForPage();
+    </script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indoor Alleys</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="outdoor.html">Outdoor Courts</a>
+    <a href="indoor.html">Indoor Courts</a>
+  </div>
+  <h1>Indoor Pickleball Courts</h1>
+  <div id="container"></div>
+  <script src="script.js"></script>
+  <script>
+    fetchIndoorCourts();
+  </script>
+</body>
+</html>
